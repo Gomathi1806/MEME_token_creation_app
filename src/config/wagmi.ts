@@ -15,7 +15,7 @@ export const config = getDefaultConfig({
 
 // Smart Contract Addresses
 export const CONTRACTS = {
-  TOKEN_FACTORY: '0xc832d3a0a8349ae0b407afd71f58c41f732137c9', // Replace with your deployed TokenFactory address
+  TOKEN_FACTORY: '0x93fc80117C23F70567B36Af5154A44c778Adf7DC', // Replace with your deployed TokenFactory address
   BADGE_NFT: '0x3422ec82B0164fAB9d106a239524a7af450dce2B',
   WETH_ADDRESS: '0x4200000000000000000000000000000000000006',
 } as const;
