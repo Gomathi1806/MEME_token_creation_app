@@ -1,1 +1,46 @@
-
+{
+  "name": "MemeCoin Creator Toolkit",
+  "short_name": "MemeCoin Toolkit",
+  "description": "Create and launch meme coins on Base network in just 3 clicks",
+  "version": "1.0.0",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#8b5cf6",
+  "background_color": "#0f172a",
+  "orientation": "portrait",
+  "scope": "/",
+  "categories": ["finance", "productivity", "utilities"],
+  "farcaster": {
+    "version": "1.0",
+    "frame": {
+      "version": "vNext",
+      "image": "https://memecoin-toolkit.com/og-image.png",
+      "buttons": [
+        {
+          "label": "Launch App",
+          "action": "link",
+          "target": "https://memecoin-toolkit.com"
+        }
+      ]
+    },
+    "miniapp": {
+      "permissions": [
+        "user.profile",
+        "cast.compose",
+        "wallet.connect"
+      ],
+      "features": [
+        "token-creation",
+        "wallet-integration",
+        "social-sharing"
+      ]
+    }
+  }
+}
