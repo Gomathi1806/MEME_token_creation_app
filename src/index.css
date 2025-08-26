@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Farcaster Mini App Styles */
+.farcaster-miniapp {
+  /* Optimize for mobile viewport */
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.farcaster-miniapp-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+/* Responsive adjustments for mini app */
+@media (max-width: 480px) {
+  .farcaster-miniapp {
+    font-size: 14px;
+  }
+  
+  .farcaster-miniapp input,
+  .farcaster-miniapp select,
+  .farcaster-miniapp button {
+    min-height: 44px; /* Touch-friendly size */
+  }
+}
+
+/* Smooth scrolling for mini app */
+.farcaster-miniapp * {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbars in mini app for cleaner look */
+.farcaster-miniapp::-webkit-scrollbar {
+  display: none;
+}
+
+.farcaster-miniapp {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
