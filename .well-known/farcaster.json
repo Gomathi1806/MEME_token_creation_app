@@ -1,1 +1,76 @@
-
+{
+  "name": "MemeCoin Creator Toolkit",
+  "version": "1.0.0",
+  "description": "Create and launch meme coins on Base network in just 3 clicks",
+  "icon": "https://memecoin-toolkit.com/icon-192.png",
+  "homeUrl": "https://memecoin-toolkit.com",
+  "imageUrl": "https://memecoin-toolkit.com/og-image.png",
+  "buttonTitle": "Create Token",
+  "splashImageUrl": "https://memecoin-toolkit.com/splash.png",
+  "splashBackgroundColor": "#0f172a",
+  "theme": "dark",
+  "permissions": [
+    "identity",
+    "cast"
+  ],
+  "frames": {
+    "version": "vNext",
+    "image": "https://memecoin-toolkit.com/frame-image.png",
+    "buttons": [
+      {
+        "label": "🚀 Create Token",
+        "action": "link",
+        "target": "https://memecoin-toolkit.com"
+      },
+      {
+        "label": "📊 Dashboard", 
+        "action": "post",
+        "target": "https://memecoin-toolkit.com/api/frame/dashboard"
+      }
+    ],
+    "input": {
+      "text": "Enter token name..."
+    },
+    "postUrl": "https://memecoin-toolkit.com/api/frame"
+  },
+  "miniApp": {
+    "url": "https://memecoin-toolkit.com",
+    "backgroundColor": "#0f172a",
+    "buttonColor": "#3b82f6",
+    "features": [
+      "token-creation",
+      "wallet-integration", 
+      "social-sharing",
+      "real-time-analytics"
+    ],
+    "categories": [
+      "defi",
+      "tools",
+      "social"
+    ]
+  },
+  "social": {
+    "twitter": "@MemeToolkit",
+    "github": "https://github.com/memecoin-toolkit",
+    "website": "https://memecoin-toolkit.com",
+    "discord": "https://discord.gg/memecoin-toolkit"
+  },
+  "developer": {
+    "name": "MemeCoin Toolkit Team",
+    "url": "https://memecoin-toolkit.com",
+    "fid": 12345
+  },
+  "screenshots": [
+    "https://memecoin-toolkit.com/screenshot1.png",
+    "https://memecoin-toolkit.com/screenshot2.png",
+    "https://memecoin-toolkit.com/screenshot3.png"
+  ],
+  "tags": [
+    "defi",
+    "tokens",
+    "base",
+    "meme",
+    "crypto",
+    "web3"
+  ]
+}
