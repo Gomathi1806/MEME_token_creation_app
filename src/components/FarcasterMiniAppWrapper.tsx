@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useFarcasterMiniApp } from '../hooks/useFarcasterMiniApp';
-import { Zap, Users, Shield, TrendingUp } from 'lucide-react';
+import { Zap, Users, Shield, TrendingUp, Coins } from 'lucide-react';
 
 interface FarcasterMiniAppWrapperProps {
   children: React.ReactNode;
@@ -21,6 +21,23 @@ const FarcasterMiniAppWrapper: React.FC<FarcasterMiniAppWrapperProps> = ({ child
       if (viewport) {
         viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
       }
+
+      // Add mini app specific CSS
+      const style = document.createElement('style');
+      style.textContent = `
+        .farcaster-miniapp {
+          overflow-x: hidden;
+          -webkit-overflow-scrolling: touch;
+        }
+        .farcaster-miniapp * {
+          -webkit-tap-highlight-color: transparent;
+        }
+      `;
+      document.head.appendChild(style);
+
+      return () => {
+        document.head.removeChild(style);
+      };
     }
 
     return () => {
@@ -31,19 +48,21 @@ const FarcasterMiniAppWrapper: React.FC<FarcasterMiniAppWrapperProps> = ({ child
   if (isInFarcaster && !isReady) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full"
-        />
-        <span className="ml-3 text-white">Loading Mini App...</span>
+        <div className="text-center">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"
+          />
+          <span className="text-white text-sm">Loading Mini App...</span>
+        </div>
       </div>
     );
   }
 
   if (isInFarcaster) {
     return (
-      <div className="farcaster-miniapp-container">
+      <div className="farcaster-miniapp-container min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         {/* Farcaster User Context Bar */}
         {context?.user && (
           <div className="bg-purple-900/50 backdrop-blur-sm border-b border-white/10 px-4 py-2">
@@ -66,7 +85,7 @@ const FarcasterMiniAppWrapper: React.FC<FarcasterMiniAppWrapperProps> = ({ child
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <div className="p-1.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
-                <Zap className="w-4 h-4 text-white" />
+                <Coins className="w-4 h-4 text-white" />
               </div>
               <div>
                 <h1 className="text-white font-bold text-sm">MemeCoin Toolkit</h1>
