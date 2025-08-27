@@ -34,6 +34,7 @@ interface FarcasterMiniAppSDK {
 declare global {
   interface Window {
     fc?: FarcasterMiniAppSDK;
+    parent: Window;
   }
 }
 
@@ -43,22 +44,60 @@ export function useFarcasterMiniApp() {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    // Check if running in Farcaster
+    // Multiple detection methods for Farcaster
     const checkFarcasterEnvironment = () => {
+      const userAgent = navigator.userAgent.toLowerCase();
+      const referrer = document.referrer.toLowerCase();
+      
       const inFarcaster = !!(
+        // Check for Farcaster SDK
         window.fc ||
+        // Check if in iframe
         window.parent !== window ||
-        document.referrer.includes('warpcast.com') ||
-        document.referrer.includes('farcaster.xyz') ||
-        navigator.userAgent.includes('Warpcast')
+        // Check referrer
+        referrer.includes('warpcast.com') ||
+        referrer.includes('farcaster.xyz') ||
+        referrer.includes('fc.xyz') ||
+        // Check user agent
+        userAgent.includes('warpcast') ||
+        userAgent.includes('farcaster') ||
+        // Check for frame context
+        window.location.search.includes('fc_frame') ||
+        // Check for mini app context
+        window.location.search.includes('fc_miniapp')
       );
+      
+      console.log('Farcaster detection:', {
+        hasFC: !!window.fc,
+        inIframe: window.parent !== window,
+        referrer,
+        userAgent,
+        searchParams: window.location.search,
+        result: inFarcaster
+      });
       
       setIsInFarcaster(inFarcaster);
       
-      if (inFarcaster && window.fc) {
-        setContext(window.fc.context);
-        // Signal that the mini app is ready
-        window.fc.actions.ready();
+      if (inFarcaster) {
+        // Initialize Farcaster SDK
+        if (window.fc) {
+          setContext(window.fc.context);
+          window.fc.actions.ready();
+          setIsReady(true);
+        } else {
+          // Fallback for when SDK isn't immediately available
+          setTimeout(() => {
+            if (window.fc) {
+              setContext(window.fc.context);
+              window.fc.actions.ready();
+              setIsReady(true);
+            } else {
+              // Mock context for testing
+              setIsReady(true);
+            }
+          }, 1000);
+        }
+      } else {
         setIsReady(true);
       }
     };
@@ -67,16 +106,29 @@ export function useFarcasterMiniApp() {
 
     // Listen for Farcaster SDK initialization
     const handleFarcasterReady = () => {
+      console.log('Farcaster SDK ready');
       if (window.fc) {
         setContext(window.fc.context);
         setIsReady(true);
       }
     };
 
+    // Listen for messages from parent frame
+    const handleMessage = (event: MessageEvent) => {
+      console.log('Received message:', event.data);
+      if (event.data?.type === 'farcaster_frame') {
+        setIsInFarcaster(true);
+        setContext(event.data.context);
+        setIsReady(true);
+      }
+    };
+
     window.addEventListener('fc:ready', handleFarcasterReady);
+    window.addEventListener('message', handleMessage);
     
     return () => {
       window.removeEventListener('fc:ready', handleFarcasterReady);
+      window.removeEventListener('message', handleMessage);
     };
   }, []);
 
@@ -91,18 +143,24 @@ export function useFarcasterMiniApp() {
   const close = useCallback(() => {
     if (window.fc) {
       window.fc.actions.close();
+    } else if (window.parent !== window) {
+      window.parent.postMessage({ type: 'close_miniapp' }, '*');
     }
   }, []);
 
   const shareText = useCallback((text: string) => {
     if (window.fc) {
       window.fc.actions.shareText(text);
+    } else if (window.parent !== window) {
+      window.parent.postMessage({ type: 'share_text', text }, '*');
     }
   }, []);
 
   const shareCast = useCallback((text: string, embeds?: string[]) => {
     if (window.fc) {
       window.fc.actions.shareCast(text, embeds);
+    } else if (window.parent !== window) {
+      window.parent.postMessage({ type: 'share_cast', text, embeds }, '*');
     }
   }, []);
 
