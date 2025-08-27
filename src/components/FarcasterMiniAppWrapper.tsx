@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useFarcasterMiniApp } from '../hooks/useFarcasterMiniApp';
 import { Zap, Users, Shield, TrendingUp, Coins } from 'lucide-react';
 
@@ -92,7 +93,11 @@ const FarcasterMiniAppWrapper: React.FC<FarcasterMiniAppWrapperProps> = ({ child
                 <p className="text-blue-300 text-xs">Create tokens on Base</p>
               </div>
             </div>
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-2">
+              {/* Mini App Wallet Connect Button */}
+              <div className="[&>div]:!bg-gradient-to-r [&>div]:!from-blue-500 [&>div]:!to-purple-600 [&>div]:!border-0 [&>div]:!rounded-lg [&>div]:!font-medium [&>div]:!px-3 [&>div]:!py-1.5 [&>div]:!text-xs [&>div]:!shadow-lg [&>div]:!shadow-blue-500/25">
+                <ConnectButton showBalance={false} chainStatus="none" accountStatus="address" />
+              </div>
               <div className="flex items-center space-x-1 bg-green-500/20 px-2 py-1 rounded-full">
                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
                 <span className="text-green-300 text-xs">Live</span>
