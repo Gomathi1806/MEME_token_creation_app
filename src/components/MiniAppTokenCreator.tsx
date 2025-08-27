@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAccount } from 'wagmi';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useTokenFactory } from '../hooks/useTokenFactory';
 import { useFarcasterMiniApp } from '../hooks/useFarcasterMiniApp';
 import { 
@@ -218,22 +219,24 @@ const MiniAppTokenCreator: React.FC = () => {
               {isPending ? 'Confirm in wallet...' : 'Deploying token...'}
             </p>
           </div>
+        ) : !isConnected ? (
+          <div className="space-y-3">
+            <div className="text-center">
+              <p className="text-gray-300 text-sm mb-3">Connect your wallet to create tokens</p>
+              <div className="[&>div]:!bg-gradient-to-r [&>div]:!from-blue-500 [&>div]:!to-purple-600 [&>div]:!border-0 [&>div]:!rounded-xl [&>div]:!font-medium [&>div]:!px-6 [&>div]:!py-3 [&>div]:!text-sm [&>div]:!shadow-lg [&>div]:!shadow-blue-500/25 [&>div]:!w-full">
+                <ConnectButton showBalance={false} chainStatus="icon" accountStatus="address" />
+              </div>
+            </div>
+          </div>
         ) : (
           <motion.button
             onClick={handleDeploy}
-            disabled={!isConnected}
-            className={`w-full py-3 font-medium rounded-xl flex items-center justify-center space-x-2 ${
-              isConnected
-                ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
-                : 'bg-gray-600 text-gray-400 cursor-not-allowed'
-            }`}
-            whileHover={{ scale: isConnected ? 1.02 : 1 }}
-            whileTap={{ scale: isConnected ? 0.98 : 1 }}
+            className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-xl flex items-center justify-center space-x-2"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <Zap className="w-4 h-4" />
-            <span>
-              {!isConnected ? 'Connect Wallet' : 'Deploy Token'}
-            </span>
+            <span>Deploy Token</span>
             <ArrowRight className="w-4 h-4" />
           </motion.button>
         )}
