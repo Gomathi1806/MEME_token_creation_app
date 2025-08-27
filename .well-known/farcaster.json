@@ -76,30 +76,20 @@
 }
 
 {
+  "accountAssociation": {
+    "header": "eyJmaWQiOjkyNzgwNCwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEUwNDA4NTU2RDQxNTNDMGVGOUFmNDkxMzcwNTlhQjQ3ODFhMzBEMTkifQ",
+    "payload": "eyJkb21haW4iOiJtZW1lLXRva2VuLWNyZWF0aW9uLWFwcC52ZXJjZWwuYXBwIn0",
+    "signature": "MHhkMDRjZTAwMDE4ZTk2ZTgzMzA3MjZlMmU0OWY2MDM0NjU4ZjVlMzA0NzAwZGM0MmU3Y2Y1NzEzYmIyNTQ4NmE0MjFlMTFkNjdkNTRlNWYyZDI2MjM5NzA5NzkwZmE4YzUyMDZmZTJkMmEzZThiNWYzMzdmYjM4MGNjNzExYzliZjFi"
+  },
   "frame": {
-    "name": "MEMETokenCreation",
     "version": "1",
+    "name": "Example Frame",
     "iconUrl": "https://meme-token-creation-app.vercel.app/icon.png",
     "homeUrl": "https://meme-token-creation-app.vercel.app",
     "imageUrl": "https://meme-token-creation-app.vercel.app/image.png",
-    "buttonTitle": "MEME",
+    "buttonTitle": "Check this out",
     "splashImageUrl": "https://meme-token-creation-app.vercel.app/splash.png",
-    "splashBackgroundColor": "#0f172a",
-    "webhookUrl": "https://meme-token-creation-app.vercel.app/api/webhook",
-    "subtitle": "Launch Your Meme Coin Revolution: Create, Customize, and Deploy Tokens with Ease",
-    "description": "The Meme Token Creation App is a user-friendly, blockchain-powered platform designed for creators, entrepreneurs, and crypto enthusiasts to launch custom meme-based cryptocurrency tokens. Built for seamless integration with popular blockchains like Solana or Ethereum, this app simplifies the process of token creation, allowing users to define token names, symbols, supply, and other parameters without needing advanced technical skills. Key features include automated smart contract deployment, liquidity pool creation, and real-time analytics to track token performance. Whether you're launching a viral meme coin for fun or building a community-driven project, the app offers a secure, scalable, and intuitive interface to bring your token ideas to life. Join the meme coin movement and deploy your token in minutes!",
-    "primaryCategory": "games",
-    "screenshotUrls": [
-      "https://meme-token-creation-app.vercel.app"
-    ],
-    "heroImageUrl": "https://meme-token-creation-app.vercel.app",
-    "tags": [
-      "memetoken",
-      "memecreation",
-      "tokenlaunch",
-      "cryptotoken",
-      "memecrypto"
-    ],
-    "tagline": "Create Meme Coins, Go Viral"
+    "splashBackgroundColor": "#eeccff",
+    "webhookUrl": "https://meme-token-creation-app.vercel.app/api/webhook"
   }
 }
