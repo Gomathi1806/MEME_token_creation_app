@@ -13,5 +13,8 @@
     "buttonTitle": "Create MEME Token",
     "splashImageUrl": "https://meme-token-creation-app.vercel.app/favicon.ico",
     "splashBackgroundColor": "#ffffff"
+  },
+  "baseBuilder": {
+    "allowedAddresses": ["0xB469223D231C1A0da6B18f9E8e3099364A846d68"]
   }
 }
